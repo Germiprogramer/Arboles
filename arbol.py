@@ -23,19 +23,19 @@ def insertarnodo(raiz, dato):
                 raiz = raiz.izquierda
                 print("d")
 
-def inorden(raiz):     
+def inorden(raiz):    
     if raiz is not None:
-        print("i")
         inorden(raiz.izquierda)  
         print(raiz.info)
-        print("d")
         inorden(raiz.derecha)
     else:
-        print("fallo")
+        pass
 
 raiz = nodoArbol(2)
+print("-")
 insertarnodo(raiz, 4)
-#insertarnodo(raiz,5)
+print("-")
+insertarnodo(raiz,5)
 #insertarnodo(raiz,1)
 #insertarnodo(raiz,0)
 
