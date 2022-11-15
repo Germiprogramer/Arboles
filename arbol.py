@@ -3,25 +3,33 @@ class nodoArbol():
         self.info = info
         self.derecha = None
         self.izquierda = None
+        self.padre = None
+
+def arbol_vacio(raiz):
+    return raiz is None
 
 def insertarnodo(raiz, dato):
     if raiz == None:
         print("el nodo es la raiz")
         raiz = nodoArbol(dato)
     else:
-        while raiz.info!= dato:
-            if raiz.info <= dato and raiz.derecha == None:
-                raiz.derecha = nodoArbol(dato)
-                print("a")
-            elif raiz.info <= dato and raiz.derecha != None:
-                raiz = raiz.derecha
-                print("b")
-            elif raiz.info > dato and raiz.izquierda == None:
-                raiz.izquierda = nodoArbol(dato)
-                print("c")
-            elif raiz.info > dato and raiz.izquierda != None:
-                raiz = raiz.izquierda
-                print("d")
+
+        while True:
+            if dato<raiz.info:
+                if raiz.izquierda is None:
+                    raiz.izquierda = nodoArbol(dato)
+                    raiz.izquierda.padre = raiz
+                    break
+                else:
+                    raiz = raiz.izquierda
+            else:
+                if raiz.derecha is None:
+                    raiz.derecha = nodoArbol(dato)
+                    raiz.derecha.padre = raiz
+                    break
+                else:
+                    raiz = raiz.derecha
+
 
 def reemplazar(raiz):
     #aux es donde guardamos la raiz a reemplazar
@@ -55,8 +63,6 @@ def eliminar_nodo(raiz, clave):
     #la raiz que ha eliminado y su valor
     return raiz, x
 
-    pass
-
 #en orden de izquierda a derecha
 def inorden(raiz):    
     if raiz is not None:
@@ -73,30 +79,13 @@ def preorden(raiz):
         preorden(raiz.izquierda)
         preorden(raiz.derecha)
 
-#contrario a inorden
+#desde abajo
 def postorden(raiz):
     if raiz is not None:
         postorden(raiz.izquierda)
         postorden(raiz.derecha)
         print(raiz.info)
 
-raiz = nodoArbol(2)
-print("-")
-insertarnodo(raiz, 5)
-print("-")
-insertarnodo(raiz,4)
-insertarnodo(raiz,7)
-insertarnodo(raiz,3)
-insertarnodo(raiz,1)
-insertarnodo(raiz,0)
-
-eliminar_nodo(raiz, 7)
-
-inorden(raiz)
-print("_____")
-preorden(raiz)
-print("_____")
-postorden(raiz)
 
 
 
