@@ -1,3 +1,4 @@
 #LIGHTGBM
-#anytree
-print("hola" + "a")
+#anyt
+cadena = "hola"
+print(cadena[0:2])

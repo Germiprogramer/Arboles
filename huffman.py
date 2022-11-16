@@ -123,11 +123,21 @@ def longitud_maxima(dic):
 print(longitud_maxima(diccionario))
 
 posicion = 0
-#for i in range(longitud_maxima(diccionario)):
-    #for j in diccionario.keys
-    #if codigo(posicion, i) == 
-for j in diccionario.keys:
+transformacion = ""
+while len(codigo)>=1:
+    for i in range(longitud_maxima(diccionario)):
+        for j in diccionario.keys():
+            if codigo[0:i] == get_key(j, diccionario):
+                transformacion = transformacion + j
+                codigo = codigo[len(get_key(j, diccionario)):len(codigo)]
+
+for j in diccionario.keys():
     print(j)
+
+
+
+
+
 
         
 
