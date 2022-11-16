@@ -36,21 +36,22 @@ def reverse(input):
     return reverse(input[1:]) + input[0]
 
 def crear_arbol(listanodos):
-    while len(listanodos) >1:
-        bubble_sort(listanodos, len(listanodos))
+    aux = listanodos
+    while len(aux) >1:
+        bubble_sort(aux, len(aux))
         padre = nodoHuffman(None, None)
-        padre.izquierda = listanodos[0]
-        padre.derecha = listanodos[1]
+        padre.izquierda = aux[0]
+        padre.derecha = aux[1]
         padre.probabilidad = padre.derecha.probabilidad + padre.izquierda.probabilidad
-        listanodos[0].padre = padre
-        listanodos[1].padre = padre
-        listanodos.append(padre)
+        aux[0].padre = padre
+        aux[1].padre = padre
+        aux.append(padre)
 
-        del(listanodos[0])
-        del(listanodos[0])
+        del(aux[0])
+        del(aux[0])
         
 
-    raiz = listanodos[0]
+    raiz = aux[0]
     return raiz
 
 #nos da un elemento
@@ -69,25 +70,39 @@ def buscar_dato(raiz, dato):
             
 
 
-print(buscar_dato(crear_arbol(listanodos), "C").padre)
-
 def codificacion(nodo, raiz):
     cod = ""
+    
     while nodo != raiz:
         if nodo == nodo.padre.izquierda:
-            cod = cod + "0"
-            print(0)
+            cod = cod + "0"       
         elif nodo == nodo.padre.derecha:
             cod = cod + "1"
-            print(1)
         else:
             return cod
         nodo = nodo.padre
     return reverse(cod)
     
 
-print(codificacion(buscar_dato(crear_arbol(listanodos), "B"), crear_arbol(listanodos)))
-    
+def dic_codificacion_valores(listanodos):
+    dic = {}
+    aux = listanodos
+    listadatos = []
+    for i in range(len(listanodos)):
+        listadatos.append(listanodos[i].info)
+    raiz = crear_arbol(aux)
+        
+    for i in range(len(listadatos)):
+        nododato = buscar_dato(raiz, listadatos[i])
+        cod = codificacion(nododato, raiz)
+        dic[listadatos[i]] = cod
+    return dic
+
+diccionario = dic_codificacion_valores(listanodos)
+print(diccionario)
+
+
+codigo = "00011"
 
 
 
