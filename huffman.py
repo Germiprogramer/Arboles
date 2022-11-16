@@ -99,10 +99,37 @@ def dic_codificacion_valores(listanodos):
     return dic
 
 diccionario = dic_codificacion_valores(listanodos)
-print(diccionario)
+
+#def codificar(diccionario, codigo): 
+
 
 
 codigo = "00011"
+string = ""
+
+def get_key(val, dic):
+    for key, value in dic.items():
+        if val == value:
+            return key
+def longitud_maxima(dic):
+    longitud = 0
+    for val in dic.values():
+        if len(val) > longitud:
+            longitud = len(val)
+        else:
+            pass
+    return longitud
+
+print(longitud_maxima(diccionario))
+
+posicion = 0
+#for i in range(longitud_maxima(diccionario)):
+    #for j in diccionario.keys
+    #if codigo(posicion, i) == 
+for j in diccionario.keys:
+    print(j)
+
+        
 
 
 
