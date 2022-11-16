@@ -100,17 +100,15 @@ def dic_codificacion_valores(listanodos):
 
 diccionario = dic_codificacion_valores(listanodos)
 
-#def codificar(diccionario, codigo): 
-
 
 
 codigo = "00011"
 string = ""
 
-def get_key(val, dic):
-    for key, value in dic.items():
-        if val == value:
-            return key
+def get_key(key, dic):
+    for a, value in dic.items():
+        if key == a:
+            return value
 def longitud_maxima(dic):
     longitud = 0
     for val in dic.values():
@@ -120,20 +118,32 @@ def longitud_maxima(dic):
             pass
     return longitud
 
-print(longitud_maxima(diccionario))
 
-posicion = 0
+
+
 transformacion = ""
 while len(codigo)>=1:
-    for i in range(longitud_maxima(diccionario)):
-        for j in diccionario.keys():
-            if codigo[0:i] == get_key(j, diccionario):
-                transformacion = transformacion + j
+    for i in range(longitud_maxima(diccionario)+1):
+       for j in list(diccionario.keys()):
+           if codigo[0:i] == get_key(j, diccionario):
+                
+                transformacion = transformacion + list(diccionario.keys())[list(diccionario.values()).index(get_key(j, diccionario))]
                 codigo = codigo[len(get_key(j, diccionario)):len(codigo)]
+                
 
-for j in diccionario.keys():
-    print(j)
+def codificacion_valor(diccionario, codigo):
+    transformacion = ""
+    while len(codigo)>=1:
+        for i in range(longitud_maxima(diccionario)+1):
+            for j in list(diccionario.keys()):
+                if codigo[0:i] == get_key(j, diccionario):
+                        
+                        transformacion = transformacion + list(diccionario.keys())[list(diccionario.values()).index(get_key(j, diccionario))]
+                        codigo = codigo[len(get_key(j, diccionario)):len(codigo)]
+    return transformacion
 
+#la funcion esta bien sañvo que al crear el diccionario listanodos se me convuerte en un unico nodo, la raiz
+print(codificacion_valor(dic_codificacion_valores(listanodos), codigo))
 
 
 
