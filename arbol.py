@@ -5,6 +5,7 @@ class nodoArbol():
         self.izquierda = None
         self.padre = None
 
+
 def arbol_vacio(raiz):
     return raiz is None
 
