@@ -18,6 +18,7 @@ class nodoHuffman():
 diccionario = {"A":0.2, "B":0.3, "C":0.5}
 
 listanodos = [nodoHuffman("A", 0.1), nodoHuffman("B", 0.3), nodoHuffman("C", 0.6)]
+listanodos1 = 
 
 def bubble_sort(lista: list, length: int = 0) -> list: 
     length = length or len(lista)
