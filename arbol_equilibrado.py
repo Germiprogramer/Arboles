@@ -1,3 +1,5 @@
+from arbol import inorden, reemplazar
+
 class nodoArbol:
     def __init__(self, info):
         self.izquierda = None
@@ -44,4 +46,66 @@ def balancear(raiz):
                 raiz = rotar_simple(raiz, True)
             else: 
                 raiz = rotar_doble(raiz, True)
-        elif(altura)
+        elif(altura(raiz.derecha)-altura(raiz.izquierda)) == 2:
+            if altura(raiz.derecha.derecha) >= altura(raiz.derecha.derecha):
+                raiz = rotar_simple(raiz, False)
+            else: 
+                raiz = rotar_doble(raiz, False)
+    return raiz
+
+def insertar_nodo(raiz,dato):
+    if raiz == None:
+        print("el nodo es la raiz")
+        raiz = nodoArbol(dato)
+    else:
+
+        while True:
+            if dato<raiz.info:
+                if raiz.izquierda is None:
+                    raiz.izquierda = nodoArbol(dato)
+                    raiz.izquierda.padre = raiz
+                    break
+                else:
+                    raiz = raiz.izquierda
+            else:
+                if raiz.derecha is None:
+                    raiz.derecha = nodoArbol(dato)
+                    raiz.derecha.padre = raiz
+                    break
+                else:
+                    raiz = raiz.derecha
+    raiz = balancear(raiz)
+    actualizar_altura(raiz)
+    return raiz
+
+def eliminar_nodo(raiz, clave):
+    x = None
+    if (raiz is not None):
+        raiz.izquierda, x = eliminar_nodo(raiz.izquierda, clave)
+    elif(clave > raiz.info):
+        raiz.derecha, x = eliminar_nodo(raiz.derecha, clave)
+    else:
+        x = raiz.info
+        if raiz.izquierda is None:
+            raiz = raiz.derecha
+        elif raiz.derecha is None:
+            raiz = raiz.izquierda
+        else:
+            raiz.izquierda, aux = reemplazar(raiz.izquierda)
+    raiz = balancear(raiz)
+    actualizar_altura(raiz)
+    return raiz, x
+
+
+raiz = (nodoArbol(3))
+insertar_nodo(raiz, 4)
+insertar_nodo(raiz, 5)
+insertar_nodo(raiz,6)
+insertar_nodo(raiz,7)
+inorden(raiz)
+
+print(altura(raiz))
+
+
+
+
