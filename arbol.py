@@ -64,6 +64,17 @@ def eliminar_nodo(raiz, clave):
     #la raiz que ha eliminado y su valor
     return raiz, x
 
+def buscar(raiz, clave):
+    pos = None
+    if raiz is not None:
+        if(raiz.info == clave):
+            pos = raiz
+        elif clave < raiz.info:
+            pos = buscar(raiz.izquierda, clave)
+        else:
+            pos = buscar(raiz.derecha, clave)
+    return pos
+
 #en orden de izquierda a derecha
 def inorden(raiz):    
     if raiz is not None:
