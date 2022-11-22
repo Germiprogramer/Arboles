@@ -100,7 +100,7 @@ def dic_codificacion_valores(listanodos):
 
 diccionario = dic_codificacion_valores(listanodos)
 
-
+print(diccionario)
 
 codigo = "00011"
 string = ""
