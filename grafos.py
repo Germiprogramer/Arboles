@@ -127,5 +127,75 @@ def eliminar_arista(vertice, destino):
             vertice.tamani0 -= 1
     return x
 
+def existe_paso(grafo, origen, destino):
+    #Barrido en profundidad del grafo
+    resultado = False
+    if not origen.visitado:
+        origen.visitado = True
+        vadyacentes = origen.adyacentes.imicio
+        while vadyacentes is not None and not resultado:
+            adyacente = buscar_vertice(grafo, vadyacentes.destino)
+            if adyacente.info == destino.info:
+                return True
+            elif not adyacente.visitado:
+                resultado = existe_paso(grafo, adyacente, destino)
+            vadyacentes = vadyacentes.sig
+    return resultado
+
+def adyacentes(vertice):
+    aux = vertice.adyacentes.inicio
+    while aux is not None:
+        print(aux.destino, aux.info)
+        aux = aux.sig
+
+def es_adyacente(vertice, destino):
+    resultado = False
+    aux = vertice.adyacentes.inicio
+    while aux is not None and not resultado:
+        if aux.destino == resultado:
+            resultado = True
+        aux = aux.sig
+    return resultado
+
+def marcar_no_visitado(grafo):
+    #marca todos los vertices del grafo como no visitados
+    aux = grafo.inicio
+    while aux is not None:
+        aux.visitado = False
+        aux = aux.sig
+
+def barrido_vertices(grafo):
+    #realiza un barrido del grafo mostrabdo sus valores
+    aux = grafo.inicio
+    while aux is not None:
+        print(aux.info)
+        aux = aux.sig
+
+def barrido_profundidad(grafo, vertice):
+    #barrido en profundidad del grafo
+    while vertice is not None:
+        if not vertice.visitado:
+            vertice.visitado = True
+            print(vertice.info)
+            adyacentes = vertice.adyacentes.inicio
+            while adyacentes is not None:
+                adyacente = buscar_vertice(grafo, adyacentes.destino)
+                if not adyacente.visitado:
+                    barrido_profundidad(grafo, adyacente)
+                adyacentes = adyacentes.sig
+        vertice = vertice.sig
+
+def barrido_amplitud(grafo, vertice):
+    pass
+
+grafo = Grafo()
+
+A_B = Arista()
+insertar_vertice(grafo, 1)
+insertar_vertice(grafo, 2)
+insertar_vertice(grafo, 3)
+insertar_arista(grafo, 2, grafo.inicio, grafo.inicio.sig)
+
+barrido_profundidad(grafo, grafo.inicio)
 
 
